@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Miembros | INNOVACANN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #FAFAFA;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #6B7280;
+            --accent: #2D5A3D;
+            --accent-hover: #1E3F2B;
+            --border: #E5E7EB;
+            --error: #DC2626;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo-small {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+
+        .logo-big {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .logout-btn:hover {
+            background: var(--error);
+            color: white;
+        }
+
+        /* Login Section */
+        .login-section {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-card h1 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .login-card .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .error-msg {
+            background: #FEE2E2;
+            color: var(--error);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .register-link a {
+            color: var(--accent);
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .login-section.hidden {
+            display: none;
+        }
+
+        .dashboard-header {
+            padding: 40px 0 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .welcome-msg {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .status-badge.pendiente {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .status-badge.aprobado {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-badge.rechazado {
+            background: rgba(220, 38, 38, 0.1);
+            color: var(--error);
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .info-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: var(--accent);
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .pending-message {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .pending-message h3 {
+            color: var(--warning);
+            margin-bottom: 12px;
+        }
+
+        .pending-message p {
+            color: var(--text-secondary);
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 40px 0;
+        }
+
+        .products-section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            height: 180px;
+            background: linear-gradient(135deg, rgba(45, 90, 61, 0.1) 0%, rgba(45, 90, 61, 0.02) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image i {
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.3;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+        }
+
+        .product-info h4 {
+            font-size: 1.1rem;
+            margin: 8px 0;
+        }
+
+        .product-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-small">Corporación</span>
+                <span class="logo-big">INNOVACANN</span>
+            </a>
+            <ul class="nav-links" id="nav-logged-in" style="display: none;">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#perfil">Mi Perfil</a></li>
+            </ul>
+            <button class="logout-btn" id="logout-btn" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section" id="login-section">
+        <div class="login-card">
+            <h1>Área de Miembros</h1>
+            <p class="subtitle">Ingresa con tu cuenta para acceder</p>
+
+            <div class="error-msg" id="error-msg"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-primary" id="login-btn">
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <p class="register-link">
+                ¿No tienes cuenta? <a href="../index.html#inscripcion">Regístrate aquí</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="welcome-msg">Bienvenido, <span id="user-name">Usuario</span></h1>
+                <span class="status-badge" id="membership-status">Pendiente</span>
+            </div>
+
+            <!-- Pending Message -->
+            <div class="pending-message" id="pending-message" style="display: none;">
+                <h3><i class="fas fa-clock"></i> Solicitud en Revisión</h3>
+                <p>Tu solicitud de membresía está siendo revisada por nuestro equipo. Te notificaremos cuando sea
+                    aprobada.</p>
+            </div>
+
+            <!-- Approved Member Content -->
+            <div id="member-content" style="display: none;">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3><i class="fas fa-user-shield"></i> Tu Membresía</h3>
+                        <p>Como miembro aprobado tienes acceso exclusivo a nuestro catálogo de productos medicinales y
+                            atención personalizada.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fas fa-phone-alt"></i> Soporte 24/7</h3>
+                        <p>Contacta a nuestro equipo médico en cualquier momento. Línea exclusiva para miembros: +56 2
+                            2345 6789</p>
+                    </div>
+                </div>
+
+                <div class="products-section" id="productos">
+                    <h2>Catálogo de Productos</h2>
+                    <div class="products-grid" id="products-grid">
+                        <!-- Products loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if already logged in
+            if (api.isLoggedIn()) {
+                showDashboard();
+            }
+
+            // Login form
+            document.getElementById('login-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const errorDiv = document.getElementById('error-msg');
+                const btn = document.getElementById('login-btn');
+
+                btn.disabled = true;
+                btn.textContent = 'Ingresando...';
+                errorDiv.classList.remove('show');
+
+                try {
+                    await api.auth.login(email, password);
+                    showDashboard();
+                } catch (error) {
+                    errorDiv.textContent = error.message;
+                    errorDiv.classList.add('show');
+                    btn.disabled = false;
+                    btn.textContent = 'Iniciar Sesión';
+                }
+            });
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                api.logout();
+            });
+        });
+
+        async function showDashboard() {
+            const user = api.getUser();
+
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('active');
+            document.getElementById('nav-logged-in').style.display = 'flex';
+            document.getElementById('logout-btn').style.display = 'block';
+
+            document.getElementById('user-name').textContent = user.name;
+
+            const statusBadge = document.getElementById('membership-status');
+            statusBadge.textContent = user.membershipStatus;
+            statusBadge.className = 'status-badge ' + user.membershipStatus;
+
+            if (user.membershipStatus === 'aprobado' || user.role === 'admin') {
+                document.getElementById('member-content').style.display = 'block';
+                loadProducts();
+            } else {
+                document.getElementById('pending-message').style.display = 'block';
+            }
+        }
+
+        async function loadProducts() {
+            try {
+                const products = await api.products.getAll();
+                const grid = document.getElementById('products-grid');
+
+                if (products.length === 0) {
+                    grid.innerHTML = '<p style="color: var(--text-secondary);">No hay productos disponibles.</p>';
+                    return;
+                }
+
+                grid.innerHTML = products.map(p => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-cannabis"></i>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">${p.category}</span>
+                            <h4>${p.name}</h4>
+                            <p>${p.description?.substring(0, 60)}...</p>
+                            <span class="product-price">$${p.price?.toLocaleString('es-CL')}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+    </script>
+</body>
+
+</html>
