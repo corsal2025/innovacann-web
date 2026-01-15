@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | INNOVACANN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="tienda.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-small">Corporación</span>
+                <span class="logo-big">INNOVACANN</span>
+            </a>
+            <div class="nav-actions">
+                <a href="../index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+                <button class="cart-btn" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="store-hero">
+        <div class="container">
+            <h1>Tienda INNOVACANN</h1>
+            <p>Productos y cursos para tu bienestar</p>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">Todos</button>
+                <button class="category-tab" data-category="cursos">Cursos</button>
+                <button class="category-tab" data-category="aceites">Aceites</button>
+                <button class="category-tab" data-category="flores">Flores</button>
+                <button class="category-tab" data-category="topicos">Tópicos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="products-grid">
+                <!-- Products loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+            </button>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Innovacann. Solo para mayores de 18 años.</p>
+        </div>
+    </footer>
+
+    <script src="../api.js"></script>
+    <script>
+        // Sample products (will be replaced with API data)
+        const products = [
+            {
+                id: 1,
+                name: 'Curso Básico Cannabis Medicinal',
+                category: 'cursos',
+                price: 49990,
+                image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop',
+                description: 'Introducción completa al cannabis medicinal. 8 horas.'
+            },
+            {
+                id: 2,
+                name: 'Curso Avanzado de Cultivo',
+                category: 'cursos',
+                price: 89990,
+                image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop',
+                description: 'Domina el cultivo profesional. 16 horas con práctica.'
+            },
+            {
+                id: 3,
+                name: 'Diplomado en Fitoterapia Cannábica',
+                category: 'cursos',
+                price: 299990,
+                image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
+                description: 'Programa completo de 3 meses con certificación.'
+            },
+            {
+                id: 4,
+                name: 'Aceite CBD Full Spectrum 10%',
+                category: 'aceites',
+                price: 35000,
+                image: 'https://images.unsplash.com/photo-1611070042580-e552f1648fae?w=400&h=300&fit=crop',
+                description: 'Aceite de cáñamo con 1000mg CBD. 30ml.'
+            },
+            {
+                id: 5,
+                name: 'Aceite THC:CBD 1:1',
+                category: 'aceites',
+                price: 45000,
+                image: 'https://images.unsplash.com/photo-1616690002282-6d70e4f7e15c?w=400&h=300&fit=crop',
+                description: 'Balance perfecto para dolor. 30ml.'
+            },
+            {
+                id: 6,
+                name: 'Flores Premium Indoor',
+                category: 'flores',
+                price: 15000,
+                image: 'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=400&h=300&fit=crop',
+                description: 'Genética seleccionada. 5g por unidad.'
+            },
+            {
+                id: 7,
+                name: 'Crema CBD Muscular',
+                category: 'topicos',
+                price: 28000,
+                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=300&fit=crop',
+                description: 'Alivio muscular localizado. 100ml.'
+            },
+            {
+                id: 8,
+                name: 'Bálsamo Relajante',
+                category: 'topicos',
+                price: 22000,
+                image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&h=300&fit=crop',
+                description: 'Con lavanda y CBD. 50g.'
+            }
+        ];
+
+        let cart = [];
+        let currentCategory = 'all';
+
+        // Render products
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const filtered = currentCategory === 'all'
+                ? products
+                : products.filter(p => p.category === currentCategory);
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card" data-category="${p.category}">
+                    <div class="product-image">
+                        <img src="${p.image}" alt="${p.name}">
+                        <span class="product-badge">${p.category}</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <p>${p.description}</p>
+                        <div class="product-footer">
+                            <span class="product-price">$${p.price.toLocaleString('es-CL')}</span>
+                            <button class="add-to-cart" onclick="addToCart(${p.id})">
+                                <i class="fas fa-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Category filter
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentCategory = tab.dataset.category;
+                renderProducts();
+            });
+        });
+
+        // Add to cart
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCart();
+            openCart();
+        }
+
+        // Update cart UI
+        function updateCart() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            document.getElementById('cart-count').textContent = count;
+            document.getElementById('cart-total').textContent = `$${total.toLocaleString('es-CL')}`;
+
+            const itemsContainer = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+            } else {
+                itemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <span class="cart-item-price">$${item.price.toLocaleString('es-CL')}</span>
+                        </div>
+                        <div class="cart-item-qty">
+                            <button onclick="changeQty(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="changeQty(${item.id}, 1)">+</button>
+                        </div>
+                        <button class="remove-item" onclick="removeItem(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Change quantity
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                updateCart();
+            }
+        }
+
+        // Remove item
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCart();
+        }
+
+        // Toggle cart
+        function openCart() {
+            document.getElementById('cart-sidebar').classList.add('open');
+            document.getElementById('cart-overlay').classList.add('show');
+        }
+
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.remove('open');
+            document.getElementById('cart-overlay').classList.remove('show');
+        }
+
+        document.getElementById('cart-btn').addEventListener('click', openCart);
+        document.getElementById('close-cart').addEventListener('click', closeCart);
+        document.getElementById('cart-overlay').addEventListener('click', closeCart);
+
+        // Checkout via WhatsApp
+        document.getElementById('checkout-btn').addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let message = '🛒 *Pedido INNOVACANN*\n\n';
+            cart.forEach(item => {
+                message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString('es-CL')}\n`;
+            });
+            message += `\n*Total: $${total.toLocaleString('es-CL')}*`;
+            message += '\n\n¿Cómo puedo realizar el pago?';
+
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/56978900761?text=${encoded}`, '_blank');
+        });
+
+        // Initialize
+        renderProducts();
+        updateCart();
+    </script>
+</body>
+
+</html>
