@@ -148,20 +148,61 @@ document.addEventListener('DOMContentLoaded', function () {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
             }
         });
     }, observerOptions);
 
-    // Observe cards for animation
-    const animatedElements = document.querySelectorAll('.mission-card, .service-card, .product-card, .blog-card');
+    // Observe cards and sections for animation
+    const animatedElements = document.querySelectorAll(
+        '.mission-card, .service-card, .product-card, .blog-card, ' +
+        '.about-content, .contact-info, .contact-hours, .contact-map, ' +
+        '.registration-info, .registration-form, .section-header, ' +
+        '.hero-stats, .hero-badge'
+    );
 
     animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.08}s`;
         observer.observe(el);
     });
+
+    // Animated counter for stats
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+                entry.target.dataset.animated = 'true';
+                animateCounter(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(stat => statsObserver.observe(stat));
+
+    function animateCounter(el) {
+        const text = el.textContent;
+        const match = text.match(/(\d+)/);
+        if (!match) return;
+
+        const target = parseInt(match[0]);
+        const suffix = text.replace(match[0], '');
+        let current = 0;
+        const duration = 2000;
+        const step = target / (duration / 16);
+
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                el.textContent = target + suffix;
+                clearInterval(timer);
+            } else {
+                el.textContent = Math.floor(current) + suffix;
+            }
+        }, 16);
+    }
 
 });
