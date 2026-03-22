@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             loadContentEditor(tab.dataset.content);
         });
     });
+
+    // Gallery upload
+    initGalleryUpload();
 });
 
 // Switch sections
@@ -77,6 +80,7 @@ function switchSection(section) {
         dashboard: 'Dashboard',
         members: 'Gestión de Miembros',
         products: 'Gestión de Productos',
+        gallery: 'Galería de Eventos',
         content: 'Editar Contenido'
     };
     document.getElementById('page-title').textContent = titles[section] || 'Dashboard';
@@ -84,6 +88,7 @@ function switchSection(section) {
     // Load section data
     if (section === 'members') loadMembers('all');
     if (section === 'products') loadProducts();
+    if (section === 'gallery') loadGallery();
     if (section === 'content') loadContentEditor('hero');
 }
 
@@ -410,9 +415,165 @@ async function saveContent(section) {
     }
 }
 
+// ================================
+// GALLERY MANAGEMENT
+// ================================
+
+let galleryPhotos = [];
+let galleryPreviewData = null;
+
+async function loadGallery() {
+    try {
+        const result = await api.content.getSection('gallery');
+        galleryPhotos = Array.isArray(result.content) ? result.content : [];
+    } catch (e) {
+        galleryPhotos = [];
+    }
+    renderAdminGallery();
+}
+
+function renderAdminGallery() {
+    const grid = document.getElementById('gallery-admin-grid');
+    if (!grid) return;
+
+    if (galleryPhotos.length === 0) {
+        grid.innerHTML = '<p class="gallery-empty">No hay fotos publicadas todavía.</p>';
+        return;
+    }
+
+    grid.innerHTML = galleryPhotos.map((photo, index) => `
+        <div class="gallery-admin-item">
+            <img src="${photo.url}" alt="${photo.title || ''}">
+            ${photo.featured ? '<span class="featured-badge">Destacada</span>' : ''}
+            <div class="item-overlay">
+                <span class="item-title">${photo.title || 'Sin título'}</span>
+                <button class="item-delete" onclick="deleteGalleryPhoto(${index})">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function saveGallery() {
+    await api.content.updateSection('gallery', galleryPhotos);
+}
+
+async function deleteGalleryPhoto(index) {
+    if (!confirm('¿Eliminar esta foto de la galería?')) return;
+    galleryPhotos.splice(index, 1);
+    try {
+        await saveGallery();
+        renderAdminGallery();
+    } catch (e) {
+        alert('Error al eliminar: ' + e.message);
+    }
+}
+
+function compressImage(file, maxWidth = 900) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let { width, height } = img;
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+                resolve(canvas.toDataURL('image/jpeg', 0.75));
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function initGalleryUpload() {
+    const dropArea = document.getElementById('gallery-drop-area');
+    const fileInput = document.getElementById('gallery-file-input');
+    const uploadLink = document.getElementById('gallery-upload-link');
+    const previewWrap = document.getElementById('gallery-preview-wrap');
+    const previewImg = document.getElementById('gallery-preview-img');
+    const removeBtn = document.getElementById('gallery-remove-preview');
+    const addBtn = document.getElementById('gallery-add-btn');
+
+    if (!dropArea) return;
+
+    uploadLink?.addEventListener('click', () => fileInput.click());
+    dropArea.addEventListener('click', () => fileInput.click());
+
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.classList.add('drag-over');
+    });
+    dropArea.addEventListener('dragleave', () => dropArea.classList.remove('drag-over'));
+    dropArea.addEventListener('drop', async (e) => {
+        e.preventDefault();
+        dropArea.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) await handleImageFile(file);
+    });
+
+    fileInput.addEventListener('change', async () => {
+        const file = fileInput.files[0];
+        if (file) await handleImageFile(file);
+    });
+
+    removeBtn?.addEventListener('click', () => {
+        galleryPreviewData = null;
+        previewWrap.style.display = 'none';
+        dropArea.style.display = 'block';
+        fileInput.value = '';
+    });
+
+    addBtn?.addEventListener('click', async () => {
+        if (!galleryPreviewData) { alert('Selecciona una imagen primero.'); return; }
+        const title = document.getElementById('gallery-title-input').value.trim();
+        const date = document.getElementById('gallery-date-input').value.trim();
+        const featured = document.getElementById('gallery-featured').checked;
+
+        galleryPhotos.push({ url: galleryPreviewData, title, date, featured });
+
+        try {
+            addBtn.disabled = true;
+            addBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+            await saveGallery();
+            // Reset form
+            galleryPreviewData = null;
+            previewWrap.style.display = 'none';
+            dropArea.style.display = 'block';
+            fileInput.value = '';
+            document.getElementById('gallery-title-input').value = '';
+            document.getElementById('gallery-date-input').value = '';
+            document.getElementById('gallery-featured').checked = false;
+            renderAdminGallery();
+            addBtn.innerHTML = '<i class="fas fa-check"></i> Foto agregada';
+            setTimeout(() => { addBtn.innerHTML = '<i class="fas fa-plus"></i> Agregar a la galería'; addBtn.disabled = false; }, 2000);
+        } catch (e) {
+            alert('Error al guardar: ' + e.message);
+            addBtn.innerHTML = '<i class="fas fa-plus"></i> Agregar a la galería';
+            addBtn.disabled = false;
+        }
+    });
+
+    async function handleImageFile(file) {
+        const compressed = await compressImage(file);
+        galleryPreviewData = compressed;
+        previewImg.src = compressed;
+        dropArea.style.display = 'none';
+        previewWrap.style.display = 'block';
+    }
+}
+
 // Make functions global
 window.approveUser = approveUser;
 window.rejectUser = rejectUser;
 window.editProduct = editProduct;
 window.deleteProduct = deleteProduct;
 window.saveContent = saveContent;
+window.deleteGalleryPhoto = deleteGalleryPhoto;

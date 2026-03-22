@@ -34,6 +34,10 @@
                 <i class="fas fa-cannabis"></i>
                 <span>Productos</span>
             </a>
+            <a href="#" class="nav-item" data-section="gallery">
+                <i class="fas fa-images"></i>
+                <span>Galería</span>
+            </a>
             <a href="#" class="nav-item" data-section="content">
                 <i class="fas fa-edit"></i>
                 <span>Contenido</span>
@@ -149,6 +153,58 @@
             </div>
             <div class="products-grid" id="products-grid">
                 <!-- Dynamic content -->
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="section-gallery" class="section">
+            <div class="section-header-bar">
+                <h2>Galería de Eventos</h2>
+            </div>
+
+            <div class="gallery-upload-card">
+                <h3><i class="fas fa-cloud-upload-alt" style="color:var(--accent);margin-right:8px"></i>Subir nueva foto</h3>
+
+                <div class="gallery-drop-area" id="gallery-drop-area">
+                    <input type="file" id="gallery-file-input" accept="image/*" style="display:none">
+                    <i class="fas fa-image"></i>
+                    <p>Arrastra una imagen aquí o <span class="upload-link" id="gallery-upload-link">selecciona un archivo</span></p>
+                    <small>JPG, PNG, WEBP — se comprimirá automáticamente</small>
+                </div>
+
+                <div class="gallery-preview-wrap" id="gallery-preview-wrap">
+                    <img id="gallery-preview-img" src="" alt="Preview">
+                    <button class="remove-preview" id="gallery-remove-preview" title="Quitar"><i class="fas fa-times"></i></button>
+                </div>
+
+                <div class="form-row" style="margin-top:16px">
+                    <div class="form-group">
+                        <label>Título del evento</label>
+                        <input type="text" id="gallery-title-input" placeholder="ej: Charla Educativa 2025">
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="text" id="gallery-date-input" placeholder="ej: Marzo 2026">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:10px">
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500">
+                        <input type="checkbox" id="gallery-featured" style="width:16px;height:16px;accent-color:var(--accent)">
+                        Destacar como foto principal (tamaño grande)
+                    </label>
+                </div>
+
+                <button class="btn-primary gallery-add-btn" id="gallery-add-btn">
+                    <i class="fas fa-plus"></i> Agregar a la galería
+                </button>
+            </div>
+
+            <div class="gallery-current">
+                <h3>Fotos publicadas</h3>
+                <div class="gallery-admin-grid" id="gallery-admin-grid">
+                    <p class="gallery-empty">Cargando fotos...</p>
+                </div>
             </div>
         </section>
 

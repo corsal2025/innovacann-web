@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Exitoso | INNOVACANN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #F8F9FA;
+            color: #1A1A2E;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .result-card {
+            background: #fff;
+            border: 1px solid #E8ECF0;
+            border-radius: 20px;
+            padding: 56px 48px;
+            text-align: center;
+            max-width: 460px;
+            width: 90%;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+        }
+        .icon-wrap {
+            width: 88px;
+            height: 88px;
+            background: rgba(16,185,129,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+        }
+        .icon { font-size: 2.5rem; color: #10B981; }
+        .brand {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #2D5A3D;
+            margin-bottom: 12px;
+        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 1.9rem; font-weight: 700; margin-bottom: 12px; color: #1A1A2E; }
+        p { color: #5A6275; font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; }
+        .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2D5A3D, #4A8C63);
+            color: white;
+            box-shadow: 0 6px 20px rgba(45,90,61,0.2);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(45,90,61,0.3); }
+        .btn-secondary {
+            background: #F8F9FA;
+            color: #5A6275;
+            border: 1.5px solid #E8ECF0;
+        }
+        .btn-secondary:hover { border-color: #2D5A3D; color: #2D5A3D; }
+    </style>
+</head>
+<body>
+    <div class="result-card">
+        <div class="icon-wrap"><i class="fas fa-circle-check icon"></i></div>
+        <div class="brand">Corporación Innovacann</div>
+        <h1>¡Pago Exitoso!</h1>
+        <p>Tu pedido fue procesado correctamente. Te enviaremos los detalles a tu correo electrónico. Nuestro equipo se pondrá en contacto contigo a la brevedad.</p>
+        <div class="buttons">
+            <a href="../index.html" class="btn btn-secondary"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-shopping-bag"></i> Seguir comprando</a>
+        </div>
+    </div>
+</body>
+</html>

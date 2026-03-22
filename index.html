@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
 
 <body>
@@ -27,9 +27,13 @@
     <!-- Age Verification Modal -->
     <div id="age-modal" class="modal">
         <div class="modal-content">
-            <div class="modal-logo">🌿</div>
+            <div class="modal-logo">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="modal-brand">Corporación INNOVACANN</div>
             <h2>Verificación de Edad</h2>
-            <p>Este sitio contiene información sobre cannabis medicinal. ¿Confirmas que eres mayor de 18 años?</p>
+            <p>Este sitio contiene información sobre cannabis medicinal. Solo para uso de adultos responsables.</p>
+            <p class="modal-sub">¿Confirmas que eres mayor de 18 años?</p>
             <div class="modal-buttons">
                 <button id="age-yes" class="btn-primary">Sí, soy mayor de 18</button>
                 <button id="age-no" class="btn-secondary">No, salir</button>
@@ -49,11 +53,15 @@
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#filosofia">Filosofía</a></li>
                 <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#productos">Productos</a></li>
                 <li><a href="tienda/index.html">Tienda</a></li>
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#galeria">Eventos</a></li>
                 <li><a href="miembros/index.html">Miembros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#inscripcion" class="btn-nav">Únete</a></li>
             </ul>
             <button class="mobile-toggle" id="mobile-toggle">
@@ -67,47 +75,70 @@
         <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#filosofia">Filosofía</a></li>
             <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#proceso">Proceso</a></li>
             <li><a href="#productos">Productos</a></li>
+            <li><a href="tienda/index.html">Tienda</a></li>
             <li><a href="#blog">Blog</a></li>
+            <li><a href="#galeria">Eventos</a></li>
+            <li><a href="miembros/index.html">Miembros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
             <li><a href="#inscripcion" class="btn-primary">Únete</a></li>
         </ul>
     </div>
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
-        <div class="container hero-content">
-            <div class="hero-badge">
-                <span>🇨🇱 Corporación Chilena</span>
-            </div>
-            <h1 class="fade-in-up">
-                Innovación que <br>
-                <span class="text-gradient">Transforma Vidas</span>
-            </h1>
-            <p class="hero-subtitle fade-in-up delay-1">
-                Liderando la ciencia del cannabis medicinal en Chile con estándares de calidad premium y un compromiso
-                con tu bienestar.
-            </p>
-            <div class="hero-buttons fade-in-up delay-2">
-                <a href="#inscripcion" class="btn-primary btn-lg">
-                    Únete a Nuestra Comunidad
-                </a>
-                <a href="#nosotros" class="btn-secondary btn-lg">
-                    Conoce Más
-                </a>
-            </div>
-            <div class="hero-stats fade-in-up delay-3">
-                <div class="stat">
-                    <span class="stat-number">5000+</span>
-                    <span class="stat-label">Miembros Activos</span>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge fade-in-up">
+                    <i class="fas fa-certificate"></i>
+                    <span>Corporación Chilena Certificada</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Legal y Regulado</span>
+                <h1 class="fade-in-up">
+                    Innovación que <br>
+                    <span class="text-gradient">Transforma Vidas</span>
+                </h1>
+                <p class="hero-subtitle fade-in-up delay-1">
+                    Liderando la ciencia del cannabis medicinal en Chile con estándares de calidad premium y un compromiso
+                    con tu bienestar.
+                </p>
+                <div class="hero-buttons fade-in-up delay-2">
+                    <a href="#inscripcion" class="btn-primary btn-lg">
+                        Únete a Nuestra Comunidad
+                    </a>
+                    <a href="#nosotros" class="btn-secondary btn-lg">
+                        Conoce Más
+                    </a>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Soporte Médico</span>
+                <div class="hero-stats fade-in-up delay-3">
+                    <div class="stat">
+                        <span class="stat-number" data-target="150">0+</span>
+                        <span class="stat-label">Miembros Activos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Legal y Regulado</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="3">0</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual fade-in-up delay-2">
+                <div class="hero-card">
+                    <img src="assets/hero.png" alt="Innovacann Cannabis Medicinal"
+                        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=500&h=600&fit=crop'">
+                    <div class="hero-card-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Avalado por el<br><strong>Marco Legal Chileno</strong></span>
+                    </div>
+                    <div class="hero-card-stat">
+                        <i class="fas fa-leaf"></i>
+                        <span>Cannabis Medicinal<br><strong>de Alta Calidad</strong></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -119,44 +150,69 @@
             <div class="about-grid">
                 <div class="about-content">
                     <span class="section-tag">Nuestra Historia</span>
-                    <h2>¿Quiénes Somos?</h2>
+                    <h2 style="margin-bottom: 16px;">¿Quiénes Somos?</h2>
                     <p class="about-text">
-                        <strong>Innovacann</strong> nace de la convicción de que el cannabis medicinal,
-                        utilizado de manera responsable y bajo supervisión profesional, tiene el poder
-                        de mejorar la calidad de vida de miles de chilenos.
+                        <strong>Innovacann</strong> es una corporación sin fines de lucro dedicada al acceso
+                        seguro y regulado de cannabis medicinal en Chile. Nacimos de la convicción de que
+                        esta planta, utilizada de manera responsable y bajo supervisión profesional,
+                        tiene el poder de transformar la calidad de vida de miles de personas.
                     </p>
                     <p class="about-text">
-                        Somos una <strong>corporación sin fines de lucro</strong> que opera bajo el marco
-                        legal chileno, funcionando como una Asociación de Usuarios de Plantas Medicinales.
+                        Operamos bajo el <strong>marco legal chileno</strong> como Asociación de Usuarios
+                        de Plantas Medicinales, elaborando aceites, pomadas y productos terapéuticos,
+                        capacitando profesionales y pacientes, y construyendo una comunidad
+                        comprometida con la salud y el bienestar.
                     </p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>100% Legal</span>
+                    <div class="about-stats">
+                        <div class="about-stat-item">
+                            <div class="about-stat-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div>
+                                <strong>100% Legal</strong>
+                                <span>Regulados por la ley chilena</span>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-user-md"></i>
-                            <span>Respaldo Médico</span>
+                        <div class="about-stat-item">
+                            <div class="about-stat-icon"><i class="fas fa-user-md"></i></div>
+                            <div>
+                                <strong>Respaldo Médico</strong>
+                                <span>Supervisión profesional</span>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-flask"></i>
-                            <span>Calidad Premium</span>
+                        <div class="about-stat-item">
+                            <div class="about-stat-icon"><i class="fas fa-flask"></i></div>
+                            <div>
+                                <strong>Calidad Premium</strong>
+                                <span>Productos artesanales certificados</span>
+                            </div>
+                        </div>
+                        <div class="about-stat-item">
+                            <div class="about-stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div>
+                                <strong>Educación</strong>
+                                <span>Cursos y capacitaciones</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="assets/about.png" alt="Laboratorio Innovacann">
+                    <img src="assets/about.png" alt="Equipo Innovacann"
+                        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=600&fit=crop'">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Mission & Vision -->
-    <section class="mission">
+    <section class="mission" id="filosofia">
         <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Filosofía</span>
+                <h2>Lo Que Nos Define</h2>
+                <p>Los pilares fundamentales que guían cada decisión en Innovacann.</p>
+            </div>
             <div class="mission-grid">
                 <div class="mission-card">
-                    <div class="card-icon">🎯</div>
+                    <div class="card-icon"><i class="fas fa-bullseye"></i></div>
                     <h3>Nuestra Misión</h3>
                     <p>
                         Proveer acceso seguro y regulado a cannabis medicinal de alta calidad,
@@ -164,7 +220,7 @@
                     </p>
                 </div>
                 <div class="mission-card">
-                    <div class="card-icon">🔭</div>
+                    <div class="card-icon"><i class="fas fa-eye"></i></div>
                     <h3>Nuestra Visión</h3>
                     <p>
                         Ser la organización de referencia en Chile para el cannabis medicinal,
@@ -172,7 +228,7 @@
                     </p>
                 </div>
                 <div class="mission-card">
-                    <div class="card-icon">💚</div>
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
                     <h3>Nuestros Valores</h3>
                     <p>
                         Transparencia, responsabilidad, innovación y bienestar. Compromiso con
@@ -193,25 +249,25 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🧬</div>
-                    <h3>Genética Certificada</h3>
+                    <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Cursos y Capacitaciones</h3>
                     <p>
-                        Desarrollo de cepas estables con perfiles de cannabinoides específicos
-                        para diferentes condiciones médicas.
+                        Formación profesional en cannabis medicinal dirigida a profesionales
+                        de la salud, pacientes y público general interesado en el uso terapéutico responsable.
                     </p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Trazabilidad completa</li>
-                        <li><i class="fas fa-check"></i> Análisis de laboratorio</li>
-                        <li><i class="fas fa-check"></i> Perfiles CBD/THC controlados</li>
+                        <li><i class="fas fa-check"></i> Talleres presenciales y online</li>
+                        <li><i class="fas fa-check"></i> Certificación al completar</li>
+                        <li><i class="fas fa-check"></i> Docentes especializados</li>
                     </ul>
                 </div>
                 <div class="service-card featured">
                     <div class="featured-badge">Más Popular</div>
-                    <div class="service-icon">🌱</div>
+                    <div class="service-icon"><i class="fas fa-seedling"></i></div>
                     <h3>Dispensario Medicinal</h3>
                     <p>
                         Acceso a un catálogo premium de flores, extractos y productos derivados
-                        de cannabis para uso terapéutico.
+                        de cannabis para uso terapéutico exclusivo de nuestros miembros.
                     </p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i> Catálogo variado</li>
@@ -220,18 +276,67 @@
                     </ul>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔬</div>
-                    <h3>Extractos Premium</h3>
+                    <div class="service-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Aceites y Pomadas Medicinales</h3>
                     <p>
-                        Aceites y concentrados de grado farmacéutico mediante extracción
-                        CO2 supercrítico.
+                        Elaboración artesanal de aceites y pomadas medicinales a base de cannabis,
+                        formulados para el alivio de diversas condiciones de salud.
                     </p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Pureza garantizada</li>
-                        <li><i class="fas fa-check"></i> Dosificación precisa</li>
-                        <li><i class="fas fa-check"></i> Sin solventes residuales</li>
+                        <li><i class="fas fa-check"></i> Ingredientes naturales</li>
+                        <li><i class="fas fa-check"></i> Dosificación controlada</li>
+                        <li><i class="fas fa-check"></i> Uso tópico y sublingual</li>
                     </ul>
                 </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>Investigación y Desarrollo</h3>
+                    <p>
+                        Proyectos de investigación científica orientados a validar los beneficios
+                        terapéuticos del cannabis y desarrollar nuevas formulaciones medicinales.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Alianzas con universidades</li>
+                        <li><i class="fas fa-check"></i> Estudios clínicos</li>
+                        <li><i class="fas fa-check"></i> Publicaciones científicas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="how-it-works" id="proceso">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Proceso</span>
+                <h2>¿Cómo hacerse Miembro?</h2>
+                <p>En 3 simples pasos accedes a todos los beneficios de nuestra corporación.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Regístrate</h3>
+                    <p>Completa el formulario de inscripción con tus datos y tu receta médica digital con QR vigente.</p>
+                </div>
+                <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Revisión</h3>
+                    <p>Nuestro equipo verifica tu documentación y aprueba tu membresía en un plazo de 24 a 48 horas hábiles.</p>
+                </div>
+                <div class="step-connector"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon"><i class="fas fa-unlock-alt"></i></div>
+                    <h3>Accede</h3>
+                    <p>Con tu membresía activa puedes acceder al catálogo completo, asesorías y todos los beneficios.</p>
+                </div>
+            </div>
+            <div class="steps-cta">
+                <a href="#inscripcion" class="btn-primary">Comenzar ahora <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -302,44 +407,30 @@
                 <h2>Noticias y Artículos</h2>
                 <p>Mantente informado sobre cannabis medicinal, legislación y bienestar.</p>
             </div>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="assets/blog-science.png" alt="CBD y Ansiedad">
-                        <span class="blog-date">14 Ene 2026</span>
-                    </div>
+            <div class="blog-grid" id="blog-grid">
+                <!-- Cargando noticias... -->
+                <article class="blog-card blog-skeleton">
+                    <div class="blog-image blog-skel-img"></div>
                     <div class="blog-content">
-                        <span class="blog-category">Ciencia</span>
-                        <h4>CBD y Ansiedad: Lo que dice la evidencia científica</h4>
-                        <p>Un análisis de los estudios más recientes sobre el uso de cannabidiol.</p>
-                        <a href="blog/cbd-ansiedad.html" class="blog-link">Leer más <i
-                                class="fas fa-arrow-right"></i></a>
+                        <div class="skel-line skel-short"></div>
+                        <div class="skel-line skel-long"></div>
+                        <div class="skel-line skel-medium"></div>
                     </div>
                 </article>
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="assets/blog-legal.png" alt="Receta Médica Cannabis">
-                        <span class="blog-date">10 Ene 2026</span>
-                    </div>
+                <article class="blog-card blog-skeleton">
+                    <div class="blog-image blog-skel-img"></div>
                     <div class="blog-content">
-                        <span class="blog-category">Legal</span>
-                        <h4>Cómo obtener tu receta médica de cannabis en Chile</h4>
-                        <p>Guía paso a paso para acceder legalmente a tratamientos.</p>
-                        <a href="blog/receta-medica.html" class="blog-link">Leer más <i
-                                class="fas fa-arrow-right"></i></a>
+                        <div class="skel-line skel-short"></div>
+                        <div class="skel-line skel-long"></div>
+                        <div class="skel-line skel-medium"></div>
                     </div>
                 </article>
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <img src="assets/blog-wellness.png" alt="Microdosificación">
-                        <span class="blog-date">05 Ene 2026</span>
-                    </div>
+                <article class="blog-card blog-skeleton">
+                    <div class="blog-image blog-skel-img"></div>
                     <div class="blog-content">
-                        <span class="blog-category">Bienestar</span>
-                        <h4>Microdosificación: Beneficios sin efectos intensos</h4>
-                        <p>Descubre cómo pequeñas dosis pueden mejorar tu calidad de vida.</p>
-                        <a href="blog/microdosificacion.html" class="blog-link">Leer más <i
-                                class="fas fa-arrow-right"></i></a>
+                        <div class="skel-line skel-short"></div>
+                        <div class="skel-line skel-long"></div>
+                        <div class="skel-line skel-medium"></div>
                     </div>
                 </article>
             </div>
@@ -354,7 +445,7 @@
                 <h2>Nuestros Eventos</h2>
                 <p>Fotografías de actividades y encuentros con nuestra comunidad.</p>
             </div>
-            <div class="gallery-grid">
+            <div class="gallery-grid" id="gallery-grid">
                 <div class="gallery-item large">
                     <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
                         alt="Evento Innovacann">
@@ -402,61 +493,203 @@
     <!-- Registration Section -->
     <section id="inscripcion" class="registration">
         <div class="container">
-            <div class="registration-grid">
-                <div class="registration-info">
-                    <span class="section-tag">Membresía</span>
-                    <h2>Únete a Nuestra Comunidad</h2>
-                    <p>
-                        Ser parte de Innovacann te da acceso a productos de calidad,
-                        asesoría profesional y una comunidad comprometida con el bienestar.
-                    </p>
-                    <div class="requirements">
-                        <h4>Requisitos para ser miembro:</h4>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Ser mayor de 18 años</li>
-                            <li><i class="fas fa-check-circle"></i> Cédula de identidad vigente</li>
-                            <li><i class="fas fa-check-circle"></i> Receta médica digital (con QR)</li>
-                            <li><i class="fas fa-check-circle"></i> Compromiso con uso responsable</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="registration-form">
-                    <h3>Solicita tu Inscripción</h3>
+            <div class="section-header">
+                <span class="section-tag">Membresía</span>
+                <h2>Únete a Nuestra Comunidad</h2>
+                <p>Completa el formulario para solicitar tu inscripción como socio o paciente de Innovacann.</p>
+            </div>
+            <div class="registration-full">
+                <div class="registration-form registration-form-wide">
                     <form id="registration-form">
-                        <div class="form-group">
-                            <label for="name">Nombre Completo</label>
-                            <input type="text" id="name" name="name" required placeholder="Ingresa tu nombre">
+
+                        <!-- Tipo de Membresía -->
+                        <div class="form-section-title">
+                            <i class="fas fa-id-card"></i>
+                            <h4>Tipo de Inscripción</h4>
                         </div>
                         <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" name="email" required placeholder="correo@ejemplo.cl">
+                            <label for="membership-type">Selecciona tu tipo de membresía</label>
+                            <select id="membership-type" name="membershipType" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="paciente">Paciente - Acceso a productos medicinales</option>
+                                <option value="socio">Socio - Miembro activo de la corporación</option>
+                                <option value="socio-paciente">Socio + Paciente - Membresía completa</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+56 9 1234 5678">
+
+                        <!-- Datos Personales -->
+                        <div class="form-section-title">
+                            <i class="fas fa-user"></i>
+                            <h4>Datos Personales</h4>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nombre Completo</label>
+                                <input type="text" id="name" name="name" required placeholder="Ingresa tu nombre completo">
+                            </div>
+                            <div class="form-group">
+                                <label for="rut">RUT</label>
+                                <input type="text" id="rut" name="rut" required placeholder="12.345.678-9">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" required placeholder="correo@ejemplo.cl">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+56 9 1234 5678">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthdate">Fecha de Nacimiento</label>
+                                <input type="date" id="birthdate" name="birthdate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Dirección</label>
+                                <input type="text" id="address" name="address" placeholder="Calle, número, comuna">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">Crea una Contraseña</label>
                             <input type="password" id="password" name="password" required
                                 placeholder="Mínimo 6 caracteres" minlength="6">
                         </div>
+
+                        <!-- Documentos -->
+                        <div class="form-section-title">
+                            <i class="fas fa-file-upload"></i>
+                            <h4>Documentos Requeridos</h4>
+                        </div>
+                        <div class="form-uploads">
+                            <div class="upload-card">
+                                <label for="file-carnet-front" class="upload-area">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <span class="upload-title">Carnet Frontal</span>
+                                    <span class="upload-hint">Foto del carnet por el frente</span>
+                                    <span class="upload-btn"><i class="fas fa-cloud-upload-alt"></i> Subir archivo</span>
+                                    <span class="upload-filename" id="filename-carnet-front"></span>
+                                </label>
+                                <input type="file" id="file-carnet-front" name="carnetFront" accept="image/*,.pdf" required>
+                            </div>
+                            <div class="upload-card">
+                                <label for="file-carnet-back" class="upload-area">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <span class="upload-title">Carnet Reverso</span>
+                                    <span class="upload-hint">Foto del carnet por atrás</span>
+                                    <span class="upload-btn"><i class="fas fa-cloud-upload-alt"></i> Subir archivo</span>
+                                    <span class="upload-filename" id="filename-carnet-back"></span>
+                                </label>
+                                <input type="file" id="file-carnet-back" name="carnetBack" accept="image/*,.pdf" required>
+                            </div>
+                            <div class="upload-card">
+                                <label for="file-receta" class="upload-area">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-file-medical"></i>
+                                    </div>
+                                    <span class="upload-title">Receta Médica</span>
+                                    <span class="upload-hint">Receta digital con código QR</span>
+                                    <span class="upload-btn"><i class="fas fa-cloud-upload-alt"></i> Subir archivo</span>
+                                    <span class="upload-filename" id="filename-receta"></span>
+                                </label>
+                                <input type="file" id="file-receta" name="recetaMedica" accept="image/*,.pdf" required>
+                            </div>
+                        </div>
+
+                        <!-- Ficha Médica / Epicrisis -->
+                        <div class="form-section-title">
+                            <i class="fas fa-notes-medical"></i>
+                            <h4>Ficha Médica - Epicrisis</h4>
+                            <p class="form-section-desc">Información médica confidencial para tu ficha de paciente.</p>
+                        </div>
                         <div class="form-group">
-                            <label for="condition">Condición Médica (Opcional)</label>
-                            <select id="condition" name="condition">
-                                <option value="">Selecciona una opción</option>
-                                <option value="dolor">Dolor Crónico</option>
-                                <option value="ansiedad">Ansiedad/Estrés</option>
+                            <label for="condition">Diagnóstico Principal</label>
+                            <select id="condition" name="condition" required>
+                                <option value="">Selecciona tu diagnóstico</option>
+                                <option value="dolor-cronico">Dolor Crónico</option>
+                                <option value="ansiedad">Ansiedad / Estrés</option>
                                 <option value="insomnio">Insomnio</option>
+                                <option value="epilepsia">Epilepsia</option>
+                                <option value="fibromialgia">Fibromialgia</option>
+                                <option value="artritis">Artritis</option>
+                                <option value="cancer">Efectos secundarios de tratamiento oncológico</option>
                                 <option value="otro">Otra condición</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="condition-detail">Detalle del Diagnóstico</label>
+                            <textarea id="condition-detail" name="conditionDetail" rows="3"
+                                placeholder="Describe brevemente tu condición médica y tiempo de evolución..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="treating-doctor">Médico Tratante</label>
+                                <input type="text" id="treating-doctor" name="treatingDoctor"
+                                    placeholder="Nombre del médico">
+                            </div>
+                            <div class="form-group">
+                                <label for="doctor-specialty">Especialidad</label>
+                                <input type="text" id="doctor-specialty" name="doctorSpecialty"
+                                    placeholder="Ej: Neurología, Medicina General">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="current-meds">Medicamentos Actuales</label>
+                            <textarea id="current-meds" name="currentMeds" rows="2"
+                                placeholder="Lista de medicamentos que tomas actualmente..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="allergies">Alergias</label>
+                                <input type="text" id="allergies" name="allergies"
+                                    placeholder="Alergias conocidas o 'Ninguna'">
+                            </div>
+                            <div class="form-group">
+                                <label for="cannabis-experience">Experiencia previa con cannabis medicinal</label>
+                                <select id="cannabis-experience" name="cannabisExperience">
+                                    <option value="">Selecciona</option>
+                                    <option value="ninguna">Sin experiencia previa</option>
+                                    <option value="poca">Poca experiencia (menos de 6 meses)</option>
+                                    <option value="moderada">Experiencia moderada (6 meses - 2 años)</option>
+                                    <option value="amplia">Amplia experiencia (más de 2 años)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="additional-notes">Observaciones Adicionales</label>
+                            <textarea id="additional-notes" name="additionalNotes" rows="2"
+                                placeholder="Cualquier información adicional relevante para tu tratamiento..."></textarea>
+                        </div>
+
+                        <!-- Términos -->
+                        <div class="form-section-title">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Declaración y Consentimiento</h4>
                         </div>
                         <div class="form-checkbox">
                             <input type="checkbox" id="terms" name="terms" required>
                             <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a
-                                    href="#">política de privacidad</a>.</label>
+                                    href="#">política de privacidad</a> de la corporación.</label>
                         </div>
-                        <button type="submit" class="btn-primary btn-full">
-                            Enviar Solicitud
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="medical-consent" name="medicalConsent" required>
+                            <label for="medical-consent">Declaro que la información médica proporcionada es verídica
+                                y autorizo su uso exclusivo para fines terapéuticos dentro de Innovacann.</label>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="age-confirm" name="ageConfirm" required>
+                            <label for="age-confirm">Confirmo que soy mayor de 18 años y me comprometo
+                                con el uso responsable de los productos medicinales.</label>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-full btn-lg">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitud de Inscripción
                         </button>
                     </form>
                 </div>
@@ -467,24 +700,26 @@
     <!-- Contact Section -->
     <section id="contacto" class="contact">
         <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Contacto</span>
+                <h2>Contáctanos</h2>
+                <p>¿Tienes preguntas? Estamos aquí para ayudarte.</p>
+            </div>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Contáctanos</h3>
-                    <p>¿Tienes preguntas? Estamos aquí para ayudarte.</p>
                     <div class="contact-items">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>contacto@innovacann.cl</span>
+                            <a href="mailto:corporacioninnovacann@gmail.com">corporacioninnovacann@gmail.com</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+56978900761" style="color: inherit; text-decoration: none;">+56 9 7890
-                                0761</a>
+                            <a href="tel:+56978900761">+56 9 7890 0761</a>
                         </div>
-                        <div class="contact-item">
-                            <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        <div class="contact-item whatsapp-item">
+                            <i class="fab fa-whatsapp"></i>
                             <a href="https://wa.me/56978900761?text=Hola,%20me%20interesa%20información%20sobre%20Innovacann"
-                                target="_blank" style="color: inherit; text-decoration: none;">WhatsApp Directo</a>
+                                target="_blank">WhatsApp Directo</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -492,25 +727,23 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="https://wa.me/56978900761?text=Hola,%20me%20interesa%20información%20sobre%20Innovacann"
-                            target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/innovacann" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/innovacann" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/56978900761" target="_blank" class="social-link social-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="contact-hours">
-                    <h4>Horarios de Atención</h4>
+                    <h4><i class="fas fa-clock"></i> Horarios de Atención</h4>
                     <ul>
                         <li><span>Lunes - Viernes</span> <span>9:00 - 18:00</span></li>
                         <li><span>Sábado</span> <span>10:00 - 14:00</span></li>
-                        <li><span>Domingo</span> <span>Cerrado</span></li>
+                        <li><span>Domingo</span> <span class="closed">Cerrado</span></li>
                     </ul>
                 </div>
-                <!-- Google Map -->
                 <div class="contact-map">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53349.14541248679!2d-71.65818565!3d-33.04722645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689e0a5e5a7c3e7%3A0x6812c5c6f30e5e2!2sValpara%C3%ADso%2C%20Chile!5e0!3m2!1ses!2scl!4v1704494200000"
-                        width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen=""
+                        width="100%" height="100%" style="border:0; border-radius: 12px;" allowfullscreen=""
                         loading="lazy">
                     </iframe>
                 </div>
@@ -528,13 +761,16 @@
                         <span class="logo-big">INNOVACANN</span>
                     </div>
                     <p>Innovación y bienestar a través del cannabis medicinal en Chile.</p>
+                    <p class="footer-rut">RUT: 65.221.834-2 · Corporación sin fines de lucro</p>
+                    <p class="footer-rut">Valparaíso, Chile</p>
                 </div>
                 <div class="footer-links-group">
-                    <h4>Enlaces Rápidos</h4>
+                    <h4>Navegación</h4>
                     <ul>
                         <li><a href="#nosotros">Nosotros</a></li>
                         <li><a href="#servicios">Servicios</a></li>
                         <li><a href="#productos">Productos</a></li>
+                        <li><a href="tienda/index.html">Tienda</a></li>
                         <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
@@ -544,45 +780,29 @@
                         <li><a href="#">Aviso Legal</a></li>
                         <li><a href="#">Política de Privacidad</a></li>
                         <li><a href="#">Términos de Uso</a></li>
+                        <li><a href="miembros/index.html">Portal Miembros</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Innovacann Corporation. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Corporación Innovacann. Todos los derechos reservados.</p>
                 <p class="disclaimer">
-                    Este sitio es solo para mayores de 18 años. El cannabis medicinal debe
-                    ser utilizado bajo supervisión médica.
+                    Sitio solo para mayores de 18 años. El cannabis medicinal debe utilizarse bajo supervisión médica y conforme a la legislación vigente.
                 </p>
             </div>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/56978900761?text=Hola,%20me%20interesa%20información%20sobre%20Innovacann" target="_blank"
-        id="whatsapp-float" style="
-           position: fixed;
-           bottom: 24px;
-           right: 24px;
-           width: 60px;
-           height: 60px;
-           background: #25D366;
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-           z-index: 9998;
-           transition: transform 0.3s, box-shadow 0.3s;
-           text-decoration: none;
-       ">
-        <i class="fab fa-whatsapp" style="color: white; font-size: 32px;"></i>
+    <a href="https://wa.me/56978900761?text=Hola,%20me%20interesa%20información%20sobre%20Innovacann"
+        target="_blank" id="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
     </a>
-    <style>
-        #whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-        }
-    </style>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" aria-label="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- EmailJS for email notifications -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>

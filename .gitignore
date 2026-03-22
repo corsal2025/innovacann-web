@@ -1,0 +1,26 @@
+# Entorno
+.env
+*.env.local
+
+# Archivos de desarrollo local
+.mcp.json
+models.json
+generate-images.mjs
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/settings.json
+*.swp
+*.swo
+
+# Build
+dist/
+build/

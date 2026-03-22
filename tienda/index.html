@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda | INNOVACANN</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="tienda.css">
 </head>
-
 <body>
-    <!-- Navigation -->
+
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="../index.html" class="logo">
@@ -23,10 +21,10 @@
             </a>
             <div class="nav-actions">
                 <a href="../index.html" class="back-link">
-                    <i class="fas fa-arrow-left"></i> Volver
+                    <i class="fas fa-arrow-left"></i> Volver al Inicio
                 </a>
                 <button class="cart-btn" id="cart-btn">
-                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cart-count">0</span>
                 </button>
             </div>
@@ -35,155 +33,325 @@
 
     <!-- Hero -->
     <section class="store-hero">
-        <div class="container">
-            <h1>Tienda INNOVACANN</h1>
-            <p>Productos y cursos para tu bienestar</p>
-        </div>
-    </section>
-
-    <!-- Categories -->
-    <section class="categories">
-        <div class="container">
-            <div class="category-tabs">
-                <button class="category-tab active" data-category="all">Todos</button>
-                <button class="category-tab" data-category="cursos">Cursos</button>
-                <button class="category-tab" data-category="aceites">Aceites</button>
-                <button class="category-tab" data-category="flores">Flores</button>
-                <button class="category-tab" data-category="topicos">Tópicos</button>
+        <div class="store-hero-bg"></div>
+        <div class="container store-hero-content">
+            <a href="../index.html" class="back-home-btn">
+                <i class="fas fa-arrow-left"></i> Regresar al menú principal
+            </a>
+            <div class="store-hero-text">
+                <span class="store-tag"><i class="fas fa-store"></i> Tienda Oficial</span>
+                <h1>Tienda INNOVACANN</h1>
+                <p>Productos medicinales certificados y cursos de formación profesional</p>
+                <div class="store-badges">
+                    <span><i class="fas fa-shield-alt"></i> Compra segura</span>
+                    <span><i class="fas fa-truck"></i> Envío a todo Chile</span>
+                    <span><i class="fas fa-certificate"></i> Productos certificados</span>
+                    <span><i class="fas fa-headset"></i> Asesoría incluida</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Grid -->
+    <!-- Anuncio miembros -->
+    <div class="members-banner">
+        <div class="container">
+            <i class="fas fa-star"></i>
+            <span>Miembros activos obtienen <strong>15% de descuento</strong> en todos los productos.</span>
+            <a href="../index.html#inscripcion">Hazte miembro →</a>
+        </div>
+    </div>
+
+    <!-- Categorías + búsqueda -->
+    <section class="categories">
+        <div class="container categories-bar">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">
+                    <i class="fas fa-th-large"></i> Todos
+                </button>
+                <button class="category-tab" data-category="cursos">
+                    <i class="fas fa-graduation-cap"></i> Cursos
+                </button>
+                <button class="category-tab" data-category="aceites">
+                    <i class="fas fa-flask"></i> Aceites
+                </button>
+                <button class="category-tab" data-category="flores">
+                    <i class="fas fa-seedling"></i> Flores
+                </button>
+                <button class="category-tab" data-category="topicos">
+                    <i class="fas fa-hand-holding-medical"></i> Tópicos
+                </button>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Buscar producto...">
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
     <section class="products-section">
         <div class="container">
-            <div class="products-grid" id="products-grid">
-                <!-- Products loaded dynamically -->
+            <div class="products-header">
+                <span id="products-count" class="products-count">8 productos</span>
+                <div class="sort-box">
+                    <label><i class="fas fa-sort"></i></label>
+                    <select id="sort-select">
+                        <option value="default">Ordenar por</option>
+                        <option value="price-asc">Menor precio</option>
+                        <option value="price-desc">Mayor precio</option>
+                        <option value="name">Nombre A–Z</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-grid" id="products-grid"></div>
+            <div class="empty-state" id="empty-state" style="display:none">
+                <i class="fas fa-box-open"></i>
+                <p>No se encontraron productos</p>
+                <button onclick="resetFilters()">Ver todos</button>
             </div>
         </div>
     </section>
+
+    <!-- Próximamente -->
+    <section class="coming-soon-section">
+        <div class="container">
+            <div class="coming-soon-header">
+                <span class="section-tag-dark"><i class="fas fa-clock"></i> Próximamente</span>
+                <h2>Más productos en camino</h2>
+                <p>Estamos ampliando nuestro catálogo. Suscríbete para ser el primero en enterarte.</p>
+            </div>
+            <div class="coming-soon-grid">
+                <div class="coming-card">
+                    <div class="coming-icon"><i class="fas fa-capsules"></i></div>
+                    <h4>Cápsulas CBD</h4>
+                    <p>Dosis precisas y convenientes</p>
+                    <span class="coming-badge">Pronto</span>
+                </div>
+                <div class="coming-card">
+                    <div class="coming-icon"><i class="fas fa-mortar-pestle"></i></div>
+                    <h4>Extractos THC</h4>
+                    <p>Alta concentración para uso médico</p>
+                    <span class="coming-badge">Pronto</span>
+                </div>
+                <div class="coming-card">
+                    <div class="coming-icon"><i class="fas fa-microscope"></i></div>
+                    <h4>Kit de Cultivo</h4>
+                    <p>Todo para cultivar en casa legalmente</p>
+                    <span class="coming-badge">Pronto</span>
+                </div>
+                <div class="coming-card">
+                    <div class="coming-icon"><i class="fas fa-book-medical"></i></div>
+                    <h4>Diplomado Online</h4>
+                    <p>Certificación en cannabis medicinal</p>
+                    <span class="coming-badge">Pronto</span>
+                </div>
+            </div>
+            <div class="notify-form">
+                <input type="email" placeholder="tu@correo.com" id="notify-email">
+                <button onclick="notifyMe()"><i class="fas fa-bell"></i> Notificarme</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div>
+                <span class="logo-big" style="font-family:'Outfit',sans-serif;color:#2D5A3D">INNOVACANN</span>
+                <p>Solo para mayores de 18 años con receta médica vigente.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Inicio</a>
+                <a href="../index.html#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+                <a href="https://wa.me/56978900761" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Corporación Innovacann. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <!-- Cart Sidebar -->
     <div class="cart-overlay" id="cart-overlay"></div>
     <aside class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
-            <h3>Tu Carrito</h3>
+            <div>
+                <h3>Tu Carrito</h3>
+                <span id="cart-items-count">0 productos</span>
+            </div>
             <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-items" id="cart-items">
-            <!-- Cart items here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Tu carrito está vacío</p>
+            </div>
         </div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
                 <span id="cart-total">$0</span>
             </div>
+            <p class="cart-note"><i class="fas fa-info-circle"></i> Envío calculado al finalizar la compra</p>
             <button class="checkout-btn" id="checkout-btn">
-                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                <i class="fas fa-lock"></i> Pagar con MercadoPago
+            </button>
+            <button class="checkout-btn checkout-btn-whatsapp" id="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
             </button>
         </div>
     </aside>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Innovacann. Solo para mayores de 18 años.</p>
-        </div>
-    </footer>
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="product-modal" id="product-modal">
+        <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+        <div class="modal-body" id="modal-body"></div>
+    </div>
 
     <script src="../api.js"></script>
     <script>
-        // Sample products (will be replaced with API data)
+        // ═══════════════════════════════════════
+        // CATÁLOGO — edita aquí tus productos
+        // ═══════════════════════════════════════
         const products = [
             {
                 id: 1,
                 name: 'Curso Básico Cannabis Medicinal',
                 category: 'cursos',
                 price: 49990,
-                image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop',
-                description: 'Introducción completa al cannabis medicinal. 8 horas.'
+                badge: 'Más vendido',
+                badgeColor: '#F59E0B',
+                image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop',
+                description: 'Introducción completa al cannabis medicinal dirigida a pacientes y público general. Incluye 8 horas de contenido, material de estudio y certificado digital.',
+                features: ['8 horas de contenido', 'Certificado digital', 'Acceso de por vida']
             },
             {
                 id: 2,
                 name: 'Curso Avanzado de Cultivo',
                 category: 'cursos',
                 price: 89990,
-                image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop',
-                description: 'Domina el cultivo profesional. 16 horas con práctica.'
+                badge: 'Nuevo',
+                badgeColor: '#10B981',
+                image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop',
+                description: 'Domina el cultivo profesional de cannabis con enfoque medicinal. 16 horas de clases teóricas y prácticas con expertos certificados.',
+                features: ['16 horas de clases', 'Práctica incluida', 'Instructores certificados']
             },
             {
                 id: 3,
                 name: 'Diplomado en Fitoterapia Cannábica',
                 category: 'cursos',
                 price: 299990,
-                image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
-                description: 'Programa completo de 3 meses con certificación.'
+                badge: 'Premium',
+                badgeColor: '#7C3AED',
+                image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=400&fit=crop',
+                description: 'Programa completo de 3 meses con certificación oficial. Ideal para profesionales de la salud que buscan especializarse en cannabis medicinal.',
+                features: ['3 meses de duración', 'Certificación oficial', 'Módulos de especialización']
             },
             {
                 id: 4,
                 name: 'Aceite CBD Full Spectrum 10%',
                 category: 'aceites',
                 price: 35000,
-                image: 'https://images.unsplash.com/photo-1611070042580-e552f1648fae?w=400&h=300&fit=crop',
-                description: 'Aceite de cáñamo con 1000mg CBD. 30ml.'
+                badge: null,
+                image: 'https://images.unsplash.com/photo-1611070042580-e552f1648fae?w=600&h=400&fit=crop',
+                description: 'Aceite de cáñamo Full Spectrum con 1000mg de CBD. Extracción en frío, sin solventes. 30ml. Ideal para manejo del dolor y el estrés.',
+                features: ['1000mg CBD', 'Full Spectrum', 'Sin solventes • 30ml']
             },
             {
                 id: 5,
                 name: 'Aceite THC:CBD 1:1',
                 category: 'aceites',
                 price: 45000,
-                image: 'https://images.unsplash.com/photo-1616690002282-6d70e4f7e15c?w=400&h=300&fit=crop',
-                description: 'Balance perfecto para dolor. 30ml.'
+                badge: 'Popular',
+                badgeColor: '#EF4444',
+                image: 'https://images.unsplash.com/photo-1616690002282-6d70e4f7e15c?w=600&h=400&fit=crop',
+                description: 'Fórmula balanceada THC:CBD en proporción 1:1. Indicado para dolor crónico y neuropático. Solo con receta médica vigente. 30ml.',
+                features: ['Ratio 1:1 THC:CBD', 'Solo con receta', '30ml']
             },
             {
                 id: 6,
                 name: 'Flores Premium Indoor',
                 category: 'flores',
                 price: 15000,
-                image: 'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=400&h=300&fit=crop',
-                description: 'Genética seleccionada. 5g por unidad.'
+                badge: null,
+                image: 'https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=600&h=400&fit=crop',
+                description: 'Flores de cannabis cultivadas en ambiente controlado. Genética seleccionada con perfiles terpénicos únicos. Solo con receta médica. 5g por unidad.',
+                features: ['Cultivo indoor', 'Perfil terpénico único', '5g por unidad']
             },
             {
                 id: 7,
                 name: 'Crema CBD Muscular',
                 category: 'topicos',
                 price: 28000,
-                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=300&fit=crop',
-                description: 'Alivio muscular localizado. 100ml.'
+                badge: null,
+                image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=400&fit=crop',
+                description: 'Crema tópica con 300mg de CBD para alivio muscular localizado. Fórmula con árnica y mentol. Sin efectos psicoactivos. 100ml.',
+                features: ['300mg CBD', 'Con árnica y mentol', '100ml']
             },
             {
                 id: 8,
-                name: 'Bálsamo Relajante',
+                name: 'Bálsamo Relajante CBD',
                 category: 'topicos',
                 price: 22000,
-                image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&h=300&fit=crop',
-                description: 'Con lavanda y CBD. 50g.'
+                badge: 'Nuevo',
+                badgeColor: '#10B981',
+                image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=600&h=400&fit=crop',
+                description: 'Bálsamo con CBD, lavanda y aceites esenciales para un efecto calmante y relajante. Ideal para masajes y relajación muscular. 50g.',
+                features: ['CBD + lavanda', 'Efecto calmante', '50g']
             }
         ];
 
         let cart = [];
         let currentCategory = 'all';
+        let currentSort = 'default';
+        let searchQuery = '';
 
-        // Render products
+        // ── Render Products ──────────────────────────────────
+        function getFiltered() {
+            let list = [...products];
+            if (currentCategory !== 'all') list = list.filter(p => p.category === currentCategory);
+            if (searchQuery) list = list.filter(p => p.name.toLowerCase().includes(searchQuery) || p.description.toLowerCase().includes(searchQuery));
+            if (currentSort === 'price-asc') list.sort((a, b) => a.price - b.price);
+            if (currentSort === 'price-desc') list.sort((a, b) => b.price - a.price);
+            if (currentSort === 'name') list.sort((a, b) => a.name.localeCompare(b.name));
+            return list;
+        }
+
         function renderProducts() {
             const grid = document.getElementById('products-grid');
-            const filtered = currentCategory === 'all'
-                ? products
-                : products.filter(p => p.category === currentCategory);
+            const empty = document.getElementById('empty-state');
+            const list = getFiltered();
+            document.getElementById('products-count').textContent = `${list.length} producto${list.length !== 1 ? 's' : ''}`;
 
-            grid.innerHTML = filtered.map(p => `
-                <div class="product-card" data-category="${p.category}">
-                    <div class="product-image">
-                        <img src="${p.image}" alt="${p.name}">
-                        <span class="product-badge">${p.category}</span>
+            if (list.length === 0) {
+                grid.innerHTML = '';
+                empty.style.display = 'flex';
+                return;
+            }
+            empty.style.display = 'none';
+
+            grid.innerHTML = list.map(p => `
+                <div class="product-card" data-id="${p.id}">
+                    <div class="product-image" onclick="openModal(${p.id})">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy">
+                        ${p.badge ? `<span class="product-badge" style="background:${p.badgeColor}">${p.badge}</span>` : ''}
+                        <div class="product-overlay">
+                            <span><i class="fas fa-eye"></i> Ver detalle</span>
+                        </div>
                     </div>
                     <div class="product-info">
-                        <h3>${p.name}</h3>
-                        <p>${p.description}</p>
+                        <span class="product-cat-label">${categoryLabel(p.category)}</span>
+                        <h3 onclick="openModal(${p.id})">${p.name}</h3>
+                        <p>${p.description.slice(0, 80)}…</p>
+                        <ul class="product-features">
+                            ${p.features.map(f => `<li><i class="fas fa-check"></i>${f}</li>`).join('')}
+                        </ul>
                         <div class="product-footer">
-                            <span class="product-price">$${p.price.toLocaleString('es-CL')}</span>
-                            <button class="add-to-cart" onclick="addToCart(${p.id})">
-                                <i class="fas fa-plus"></i> Agregar
+                            <div class="product-price-wrap">
+                                <span class="price-label">Precio</span>
+                                <span class="product-price">$${p.price.toLocaleString('es-CL')}</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
+                                <i class="fas fa-shopping-bag"></i> Agregar
                             </button>
                         </div>
                     </div>
@@ -191,7 +359,12 @@
             `).join('');
         }
 
-        // Category filter
+        function categoryLabel(cat) {
+            const map = { cursos: 'Cursos', aceites: 'Aceites', flores: 'Flores', topicos: 'Tópicos' };
+            return map[cat] || cat;
+        }
+
+        // ── Filters ──────────────────────────────────────────
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
@@ -201,72 +374,128 @@
             });
         });
 
-        // Add to cart
+        document.getElementById('search-input').addEventListener('input', e => {
+            searchQuery = e.target.value.trim().toLowerCase();
+            renderProducts();
+        });
+
+        document.getElementById('sort-select').addEventListener('change', e => {
+            currentSort = e.target.value;
+            renderProducts();
+        });
+
+        function resetFilters() {
+            currentCategory = 'all';
+            currentSort = 'default';
+            searchQuery = '';
+            document.getElementById('search-input').value = '';
+            document.getElementById('sort-select').value = 'default';
+            document.querySelectorAll('.category-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+            renderProducts();
+        }
+
+        // ── Product Modal ─────────────────────────────────────
+        function openModal(id) {
+            const p = products.find(p => p.id === id);
+            document.getElementById('modal-body').innerHTML = `
+                <div class="modal-img">
+                    <img src="${p.image}" alt="${p.name}">
+                    ${p.badge ? `<span class="product-badge" style="background:${p.badgeColor}">${p.badge}</span>` : ''}
+                </div>
+                <div class="modal-info">
+                    <span class="product-cat-label">${categoryLabel(p.category)}</span>
+                    <h2>${p.name}</h2>
+                    <p class="modal-desc">${p.description}</p>
+                    <ul class="modal-features">
+                        ${p.features.map(f => `<li><i class="fas fa-check-circle"></i>${f}</li>`).join('')}
+                    </ul>
+                    <div class="modal-footer">
+                        <div class="product-price-wrap">
+                            <span class="price-label">Precio</span>
+                            <span class="product-price large">$${p.price.toLocaleString('es-CL')}</span>
+                        </div>
+                        <button class="add-to-cart-btn large" onclick="addToCart(${p.id});closeModal()">
+                            <i class="fas fa-shopping-bag"></i> Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('product-modal').classList.add('open');
+            document.getElementById('modal-overlay').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('open');
+            document.getElementById('modal-overlay').classList.remove('show');
+        }
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('modal-overlay').addEventListener('click', closeModal);
+
+        // ── Cart ──────────────────────────────────────────────
         function addToCart(id) {
             const product = products.find(p => p.id === id);
             const existing = cart.find(item => item.id === id);
-
             if (existing) {
                 existing.quantity++;
             } else {
                 cart.push({ ...product, quantity: 1 });
             }
-
             updateCart();
-            openCart();
+            showCartToast(product.name);
         }
 
-        // Update cart UI
-        function updateCart() {
-            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        function showCartToast(name) {
+            const t = document.createElement('div');
+            t.className = 'cart-toast';
+            t.innerHTML = `<i class="fas fa-check-circle"></i> <span>${name.slice(0,30)}… agregado</span>`;
+            document.body.appendChild(t);
+            setTimeout(() => t.classList.add('show'), 10);
+            setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2500);
+        }
 
+        function updateCart() {
+            const count = cart.reduce((s, i) => s + i.quantity, 0);
+            const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
             document.getElementById('cart-count').textContent = count;
+            document.getElementById('cart-items-count').textContent = `${count} producto${count !== 1 ? 's' : ''}`;
             document.getElementById('cart-total').textContent = `$${total.toLocaleString('es-CL')}`;
 
-            const itemsContainer = document.getElementById('cart-items');
+            const container = document.getElementById('cart-items');
             if (cart.length === 0) {
-                itemsContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+                container.innerHTML = `<div class="empty-cart"><i class="fas fa-shopping-bag"></i><p>Tu carrito está vacío</p></div>`;
             } else {
-                itemsContainer.innerHTML = cart.map(item => `
+                container.innerHTML = cart.map(item => `
                     <div class="cart-item">
                         <img src="${item.image}" alt="${item.name}">
                         <div class="cart-item-info">
                             <h4>${item.name}</h4>
-                            <span class="cart-item-price">$${item.price.toLocaleString('es-CL')}</span>
+                            <span class="cart-item-price">$${(item.price * item.quantity).toLocaleString('es-CL')}</span>
                         </div>
-                        <div class="cart-item-qty">
-                            <button onclick="changeQty(${item.id}, -1)">-</button>
+                        <div class="cart-item-controls">
+                            <button onclick="changeQty(${item.id},-1)">−</button>
                             <span>${item.quantity}</span>
-                            <button onclick="changeQty(${item.id}, 1)">+</button>
+                            <button onclick="changeQty(${item.id},1)">+</button>
                         </div>
-                        <button class="remove-item" onclick="removeItem(${item.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                        <button class="remove-item" onclick="removeItem(${item.id})"><i class="fas fa-trash-alt"></i></button>
                     </div>
                 `).join('');
             }
         }
 
-        // Change quantity
         function changeQty(id, delta) {
             const item = cart.find(i => i.id === id);
-            if (item) {
-                item.quantity += delta;
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.id !== id);
-                }
-                updateCart();
-            }
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
+            updateCart();
         }
 
-        // Remove item
         function removeItem(id) {
             cart = cart.filter(i => i.id !== id);
             updateCart();
         }
 
-        // Toggle cart
         function openCart() {
             document.getElementById('cart-sidebar').classList.add('open');
             document.getElementById('cart-overlay').classList.add('show');
@@ -279,31 +508,47 @@
 
         document.getElementById('cart-btn').addEventListener('click', openCart);
         document.getElementById('close-cart').addEventListener('click', closeCart);
-        document.getElementById('cart-overlay').addEventListener('click', closeCart);
 
-        // Checkout via WhatsApp
-        document.getElementById('checkout-btn').addEventListener('click', () => {
-            if (cart.length === 0) {
-                alert('Tu carrito está vacío');
-                return;
+        // ── Checkout ──────────────────────────────────────────
+        document.getElementById('checkout-btn').addEventListener('click', async () => {
+            if (cart.length === 0) { alert('Tu carrito está vacío'); return; }
+            const btn = document.getElementById('checkout-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            try {
+                const res = await fetch('https://innovacann-api.onrender.com/api/payments/create-preference', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: cart.map(i => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })) })
+                });
+                if (!res.ok) throw new Error();
+                const data = await res.json();
+                window.location.href = data.init_point;
+            } catch {
+                alert('No se pudo conectar con el servidor de pagos. Intenta por WhatsApp.');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-lock"></i> Pagar con MercadoPago';
             }
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let message = '🛒 *Pedido INNOVACANN*\n\n';
-            cart.forEach(item => {
-                message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString('es-CL')}\n`;
-            });
-            message += `\n*Total: $${total.toLocaleString('es-CL')}*`;
-            message += '\n\n¿Cómo puedo realizar el pago?';
-
-            const encoded = encodeURIComponent(message);
-            window.open(`https://wa.me/56978900761?text=${encoded}`, '_blank');
         });
 
-        // Initialize
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            let msg = '🛒 *Pedido INNOVACANN*\n\n';
+            cart.forEach(i => { msg += `• ${i.name} x${i.quantity} — $${(i.price * i.quantity).toLocaleString('es-CL')}\n`; });
+            msg += `\n*Total: $${total.toLocaleString('es-CL')}*`;
+            window.open(`https://wa.me/56978900761?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+
+        function notifyMe() {
+            const email = document.getElementById('notify-email').value;
+            if (!email || !email.includes('@')) { alert('Ingresa un correo válido'); return; }
+            alert(`¡Listo! Te notificaremos a ${email} cuando lleguen nuevos productos.`);
+            document.getElementById('notify-email').value = '';
+        }
+
+        // Init
         renderProducts();
         updateCart();
     </script>
 </body>
-
 </html>
