@@ -1,114 +1,69 @@
 const express = require('express');
 const router = express.Router();
-const Content = require('../models/Content');
+const supabase = require('../config/db');
 const { protect, admin } = require('../middleware/auth');
 
-// @route   GET /api/content
-// @desc    Get all content sections
-// @access  Public
+// GET /api/content
 router.get('/', async (req, res) => {
     try {
-        const content = await Content.find({});
-        res.json(content);
+        const { data, error } = await supabase.from('content').select('*');
+        if (error) throw error;
+        res.json(data);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener contenido', error: error.message });
     }
 });
 
-// @route   GET /api/content/:section
-// @desc    Get specific section content
-// @access  Public
+// GET /api/content/:section
 router.get('/:section', async (req, res) => {
     try {
-        const content = await Content.findOne({ section: req.params.section });
-        if (!content) {
+        const { data, error } = await supabase
+            .from('content')
+            .select('*')
+            .eq('section', req.params.section)
+            .single();
+
+        if (error || !data) {
             return res.status(404).json({ message: 'Sección no encontrada' });
         }
-        res.json(content);
+        res.json(data);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener contenido', error: error.message });
     }
 });
 
-// @route   PUT /api/content/:section
-// @desc    Update section content
-// @access  Private/Admin
+// PUT /api/content/:section (admin)
 router.put('/:section', protect, admin, async (req, res) => {
     try {
-        let content = await Content.findOne({ section: req.params.section });
+        const { data: existing } = await supabase
+            .from('content')
+            .select('id')
+            .eq('section', req.params.section)
+            .single();
 
-        if (content) {
-            content.content = req.body.content;
-            content.updatedBy = req.user._id;
-            await content.save();
+        let result;
+        if (existing) {
+            const { data, error } = await supabase
+                .from('content')
+                .update({ content: req.body.content, updated_at: new Date().toISOString(), updated_by: req.user.id })
+                .eq('section', req.params.section)
+                .select()
+                .single();
+            if (error) throw error;
+            result = data;
         } else {
-            content = await Content.create({
-                section: req.params.section,
-                content: req.body.content,
-                updatedBy: req.user._id
-            });
+            const { data, error } = await supabase
+                .from('content')
+                .insert({ section: req.params.section, content: req.body.content, updated_by: req.user.id })
+                .select()
+                .single();
+            if (error) throw error;
+            result = data;
         }
 
-        res.json(content);
+        res.json(result);
     } catch (error) {
         res.status(500).json({ message: 'Error al actualizar contenido', error: error.message });
-    }
-});
-
-// @route   POST /api/content/init
-// @desc    Initialize default content
-// @access  Private/Admin
-router.post('/init', protect, admin, async (req, res) => {
-    try {
-        const defaultContent = [
-            {
-                section: 'hero',
-                content: {
-                    badge: '🇨🇱 Corporación Chilena',
-                    title: 'Innovación que Transforma Vidas',
-                    subtitle: 'Liderando la ciencia del cannabis medicinal en Chile con estándares de calidad premium y un compromiso con tu bienestar.',
-                    stats: [
-                        { number: '5000+', label: 'Miembros Activos' },
-                        { number: '100%', label: 'Legal y Regulado' },
-                        { number: '24/7', label: 'Soporte Médico' }
-                    ]
-                }
-            },
-            {
-                section: 'about',
-                content: {
-                    tag: 'Nuestra Historia',
-                    title: '¿Quiénes Somos?',
-                    text: 'Innovacann nace de la convicción de que el cannabis medicinal, utilizado de manera responsable y bajo supervisión profesional, tiene el poder de mejorar la calidad de vida de miles de chilenos.',
-                    features: ['100% Legal', 'Respaldo Médico', 'Calidad Premium']
-                }
-            },
-            {
-                section: 'contact',
-                content: {
-                    email: 'contacto@innovacann.cl',
-                    phone: '+56 2 2345 6789',
-                    address: 'Santiago, Chile',
-                    hours: {
-                        weekdays: '9:00 - 18:00',
-                        saturday: '10:00 - 14:00',
-                        sunday: 'Cerrado'
-                    }
-                }
-            }
-        ];
-
-        for (const item of defaultContent) {
-            await Content.findOneAndUpdate(
-                { section: item.section },
-                item,
-                { upsert: true, new: true }
-            );
-        }
-
-        res.json({ message: 'Contenido inicializado', count: defaultContent.length });
-    } catch (error) {
-        res.status(500).json({ message: 'Error al inicializar contenido', error: error.message });
     }
 });
 

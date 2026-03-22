@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const supabase = require('../config/db');
 
-// Protect routes - verify token
 const protect = async (req, res, next) => {
     let token;
 
@@ -9,20 +8,27 @@ const protect = async (req, res, next) => {
         try {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.id).select('-password');
+
+            const { data: user, error } = await supabase
+                .from('users')
+                .select('id, name, email, role, membership_status, is_active')
+                .eq('id', decoded.id)
+                .single();
+
+            if (error || !user) {
+                return res.status(401).json({ message: 'No autorizado, usuario no encontrado' });
+            }
+
+            req.user = user;
             next();
         } catch (error) {
-            console.error(error);
-            res.status(401).json({ message: 'No autorizado, token inválido' });
+            return res.status(401).json({ message: 'No autorizado, token inválido' });
         }
-    }
-
-    if (!token) {
-        res.status(401).json({ message: 'No autorizado, no hay token' });
+    } else {
+        return res.status(401).json({ message: 'No autorizado, no hay token' });
     }
 };
 
-// Admin only middleware
 const admin = (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
         next();
@@ -31,10 +37,9 @@ const admin = (req, res, next) => {
     }
 };
 
-// Member only middleware
 const member = (req, res, next) => {
     if (req.user && (req.user.role === 'miembro' || req.user.role === 'admin')) {
-        if (req.user.membershipStatus === 'aprobado' || req.user.role === 'admin') {
+        if (req.user.membership_status === 'aprobado' || req.user.role === 'admin') {
             next();
         } else {
             res.status(403).json({ message: 'Membresía pendiente de aprobación' });
