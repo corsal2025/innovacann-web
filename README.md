@@ -48,17 +48,25 @@ Asistente de 4 pasos con:
 
 ## 🚀 Despliegue y dominio
 
-El sitio se despliega automáticamente en **Vercel** con cada push a `main`
-(GitHub Actions: `.github/workflows/deploy.yml`, requiere los secrets
-`VERCEL_TOKEN`, `VERCEL_ORG_ID` y `VERCEL_PROJECT_ID`).
+**Conectar el repositorio a Vercel (una sola vez):**
 
-Para conectar el dominio:
+1. Entra a [vercel.com](https://vercel.com) con tu cuenta de GitHub.
+2. **Add New → Project → Import** y elige `corsal2025/innovacann-web`.
+3. No cambies nada (es un sitio estático, sin build) y pulsa **Deploy**.
+
+Desde entonces, **cada push a `main` se publica automáticamente**.
+
+**Conectar el dominio:**
 
 1. En Vercel: **Project → Settings → Domains → Add** e ingresa tu dominio.
 2. En tu proveedor de dominio, apunta los DNS según indique Vercel
    (registro `A` a `76.76.21.21` o `CNAME` a `cname.vercel-dns.com`).
 3. Reemplaza `https://innovacann.cl` por tu dominio real en `robots.txt`, `sitemap.xml`
    y en las etiquetas `og:url` / `og:image` de `index.html`.
+
+> Nota: el workflow anterior de GitHub Actions se eliminó porque nunca tuvo
+> configurados los secrets de Vercel y fallaba en cada push. La integración
+> nativa de Vercel lo reemplaza sin configuración adicional.
 
 ## 🛠️ Desarrollo local
 
