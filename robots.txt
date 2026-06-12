@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Actualiza esta URL cuando conectes tu dominio definitivo
+Sitemap: https://innovacann.cl/sitemap.xml
