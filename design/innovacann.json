@@ -1,0 +1,34 @@
+{
+  "type": "page",
+  "name": "Innovacann Home",
+  "children": [
+    {
+      "type": "frame",
+      "name": "Hero",
+      "width": 1440,
+      "height": 800,
+      "fills": [{"type": "solid", "color": "#2D5A3D"}],
+      "children": [
+        {
+          "type": "text",
+          "name": "Title",
+          "characters": "Corporación Innovacann",
+          "fontSize": 48,
+          "fontWeight": 700,
+          "fills": [{"type": "solid", "color": "#FFFFFF"}],
+          "x": 100,
+          "y": 200
+        },
+        {
+          "type": "text",
+          "name": "Subtitle",
+          "characters": "Cannabis Medicinal con Responsabilidad",
+          "fontSize": 24,
+          "fills": [{"type": "solid", "color": "#FFFFFF"}],
+          "x": 100,
+          "y": 280
+        }
+      ]
+    }
+  ]
+}
