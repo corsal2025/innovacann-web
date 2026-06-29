@@ -1,0 +1,127 @@
+{
+  "type": "frame",
+  "name": "Innovacann Landing",
+  "role": "section",
+  "width": 1200,
+  "height": 0,
+  "layout": "vertical",
+  "fill": [{"type": "solid", "color": "#FFFFFF"}],
+  "children": [
+    {
+      "type": "frame",
+      "name": "Navbar",
+      "role": "navbar",
+      "width": "fill_container",
+      "height": 72,
+      "layout": "horizontal",
+      "padding": [0, 80],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "fill": [{"type": "solid", "color": "#FFFFFF"}],
+      "children": [
+        {
+          "type": "text",
+          "name": "Logo",
+          "content": "INNOVACANN",
+          "fontSize": 20,
+          "fontWeight": 700,
+          "fill": [{"type": "solid", "color": "#2D5A3D"}]
+        },
+        {
+          "type": "frame",
+          "name": "Nav Links",
+          "role": "nav-links",
+          "layout": "horizontal",
+          "gap": 32,
+          "children": [
+            {"type": "text", "name": "Link 1", "content": "Nosotros", "fontSize": 15, "fill": [{"type": "solid", "color": "#475569"}]},
+            {"type": "text", "name": "Link 2", "content": "Blog", "fontSize": 15, "fill": [{"type": "solid", "color": "#475569"}]},
+            {"type": "text", "name": "Link 3", "content": "Proceso", "fontSize": 15, "fill": [{"type": "solid", "color": "#475569"}]},
+            {"type": "text", "name": "Link 4", "content": "Contacto", "fontSize": 15, "fill": [{"type": "solid", "color": "#475569"}]}
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "CTA Button",
+          "role": "button",
+          "padding": [10, 20],
+          "height": 40,
+          "cornerRadius": 8,
+          "fill": [{"type": "solid", "color": "#2D5A3D"}],
+          "children": [
+            {"type": "text", "name": "CTA Text", "content": "Inscríbete", "fontSize": 14, "fontWeight": 600, "fill": [{"type": "solid", "color": "#FFFFFF"}]}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "name": "Hero Section",
+      "role": "hero",
+      "width": "fill_container",
+      "height": 560,
+      "layout": "horizontal",
+      "padding": [80, 80],
+      "gap": 60,
+      "fill": [{"type": "solid", "color": "#2D5A3D"}],
+      "children": [
+        {
+          "type": "frame",
+          "name": "Hero Content",
+          "layout": "vertical",
+          "width": 540,
+          "gap": 20,
+          "justifyContent": "center",
+          "children": [
+            {"type": "text", "name": "Hero Tag", "content": "CORPORACIÓN SIN FINES DE LUCRO", "fontSize": 12, "fontWeight": 600, "letterSpacing": 2, "fill": [{"type": "solid", "color": "#A7F3D0"}]},
+            {"type": "text", "name": "Hero Title", "role": "heading", "content": "Cannabis Medicinal con Responsabilidad", "fontSize": 44, "fontWeight": 700, "fill": [{"type": "solid", "color": "#FFFFFF"}]},
+            {"type": "text", "name": "Hero Description", "role": "body-text", "content": "Te acompañamos en tu camino hacia el cannabis medicinal con respaldo legal, orientación médica y una comunidad que te cuida.", "fontSize": 18, "fill": [{"type": "solid", "color": "#D1FAE5"}], "width": "fill_container", "textGrowth": "fixed-width"},
+            {
+              "type": "frame",
+              "name": "Hero Buttons",
+              "layout": "horizontal",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "Primary Button",
+                  "role": "button",
+                  "padding": [14, 28],
+                  "height": 48,
+                  "cornerRadius": 8,
+                  "fill": [{"type": "solid", "color": "#FFFFFF"}],
+                  "children": [
+                    {"type": "text", "name": "Btn Text", "content": "Inscríbete Ahora", "fontSize": 16, "fontWeight": 600, "fill": [{"type": "solid", "color": "#2D5A3D"}]}
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "Secondary Button",
+                  "role": "button",
+                  "padding": [14, 28],
+                  "height": 48,
+                  "cornerRadius": 8,
+                  "stroke": {"thickness": 2, "fill": [{"type": "solid", "color": "#FFFFFF"}]},
+                  "children": [
+                    {"type": "text", "name": "Btn Text 2", "content": "Conoce Más", "fontSize": 16, "fontWeight": 600, "fill": [{"type": "solid", "color": "#FFFFFF"}]}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "Hero Visual",
+          "width": 480,
+          "height": 400,
+          "cornerRadius": 24,
+          "fill": [{"type": "solid", "color": "#3d7a52"}],
+          "children": [
+            {"type": "image", "name": "Hero Image", "width": "fill_container", "height": "fill_container", "imageSearchQuery": "cannabis medicinal plant"}
+          ]
+        }
+      ]
+    }
+  ]
+}
