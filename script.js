@@ -576,10 +576,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ── Envío por WhatsApp ───────────────────────────────────
+    // ── Envío por WhatsApp + Guardar ficha ──────────────────
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (!validateStep(4)) return;
+
+        // Guardar ficha en localStorage
+        var fichaData = {
+            membershipType: getValue('membershipType'),
+            name: getValue('name'),
+            rut: getValue('rut'),
+            email: getValue('email'),
+            phone: getValue('phone'),
+            birthdate: getValue('birthdate'),
+            comuna: getValue('comuna'),
+            condition: getValue('condition'),
+            experience: getValue('experience'),
+            receta: getValue('receta'),
+            healthNotes: getValue('healthNotes'),
+            interests: getInterests(),
+            memberNotes: getValue('memberNotes'),
+            terms: document.getElementById('terms').checked,
+            truth: document.getElementById('truth').checked,
+            estado: 'pendiente'
+        };
+        if (typeof FichaIngreso !== 'undefined') {
+            FichaIngreso.save(fichaData);
+        }
 
         var url = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(buildMessage());
 
@@ -638,4 +661,84 @@ document.addEventListener('DOMContentLoaded', function () {
     // Estado inicial
     goTo(1);
     wizardReady = true;
+
+    // ── Panel de Administración ──────────────────────────────
+    var adminPanel = document.getElementById('admin-panel');
+    var adminToggle = document.getElementById('admin-toggle');
+    var adminList = document.getElementById('admin-list');
+    var adminStats = document.getElementById('admin-stats');
+    var adminExport = document.getElementById('admin-export');
+    var adminClose = document.getElementById('admin-close');
+
+    if (adminToggle && adminPanel) {
+        adminToggle.addEventListener('click', function() {
+            adminPanel.classList.toggle('hidden');
+            if (!adminPanel.classList.contains('hidden')) {
+                renderAdminPanel();
+            }
+        });
+
+        adminClose.addEventListener('click', function() {
+            adminPanel.classList.add('hidden');
+        });
+
+        adminExport.addEventListener('click', function() {
+            if (typeof FichaIngreso !== 'undefined') {
+                FichaIngreso.exportCSV();
+            }
+        });
+    }
+
+    function renderAdminPanel() {
+        if (typeof FichaIngreso === 'undefined') {
+            adminList.innerHTML = '<div class="admin-empty"><p>Sistema de fichas no disponible.</p></div>';
+            return;
+        }
+
+        var fichas = FichaIngreso.getAll();
+
+        // Stats
+        var total = fichas.length;
+        var pendientes = fichas.filter(function(f) { return f.estado === 'pendiente'; }).length;
+        var procesadas = fichas.filter(function(f) { return f.estado === 'procesada'; }).length;
+        var pacientes = fichas.filter(function(f) { return f.membershipType !== 'Socio'; }).length;
+
+        adminStats.innerHTML = 
+            '<div class="admin-stat-card"><div class="stat-value">' + total + '</div><div class="stat-label">Total Fichas</div></div>' +
+            '<div class="admin-stat-card"><div class="stat-value">' + pendientes + '</div><div class="stat-label">Pendientes</div></div>' +
+            '<div class="admin-stat-card"><div class="stat-value">' + procesadas + '</div><div class="stat-label">Procesadas</div></div>' +
+            '<div class="admin-stat-card"><div class="stat-value">' + pacientes + '</div><div class="stat-label">Pacientes</div></div>';
+
+        // Lista
+        if (!fichas.length) {
+            adminList.innerHTML = '<div class="admin-empty"><p>No hay fichas registradas aún.</p><p>Las inscripciones aparecerán aquí.</p></div>';
+            return;
+        }
+
+        adminList.innerHTML = fichas.reverse().map(function(f) {
+            var typeIcon = f.membershipType === 'Paciente' ? 'fa-leaf' : 
+                          f.membershipType === 'Socio' ? 'fa-handshake' : 'fa-star';
+            return '<div class="admin-ficha-card" data-id="' + f.id + '">' +
+                '<span class="admin-ficha-id">' + f.id + '</span>' +
+                '<div class="admin-ficha-info">' +
+                    '<span class="admin-ficha-name"><i class="fas ' + typeIcon + '"></i> ' + escapeHtml(f.name) + '</span>' +
+                    '<span class="admin-ficha-meta">' + escapeHtml(f.membershipType) + ' · ' + escapeHtml(f.email) + ' · ' + FichaIngreso.formatDate(f.fechaCreacion) + '</span>' +
+                '</div>' +
+                '<div class="admin-ficha-actions">' +
+                    '<button onclick="FichaIngreso.print(\'' + f.id + '\')"><i class="fas fa-print"></i> Imprimir</button>' +
+                    '<button onclick="adminDeleteFicha(\'' + f.id + '\')" class="btn-delete"><i class="fas fa-trash"></i></button>' +
+                '</div>' +
+            '</div>';
+        }).join('');
+    }
+
+    function adminDeleteFicha(id) {
+        if (confirm('¿Eliminar esta ficha?')) {
+            FichaIngreso.delete(id);
+            renderAdminPanel();
+        }
+    }
+
+    // Hacer functions globales para los onclick
+    window.adminDeleteFicha = adminDeleteFicha;
 });

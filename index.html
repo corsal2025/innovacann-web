@@ -340,6 +340,55 @@
         </div>
     </section>
 
+    <!-- Blog/Noticias -->
+    <section class="blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Noticias</span>
+                <h2>Últimas novedades</h2>
+                <p>Mantente informado sobre cannabis medicinal y actividades de la corporación.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/hero.jpg" alt="Cannabis medicinal" loading="lazy">
+                        <span class="blog-date">15 Jun 2026</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Educación</span>
+                        <h3>Guía para pacientes nuevos en cannabis medicinal</h3>
+                        <p>Todo lo que necesitas saber antes de comenzar tu tratamiento: tipos de productos, dosificación y recomendaciones.</p>
+                        <a href="#" class="blog-read-more">Leer más →</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/about.jpg" alt="Equipo Innovacann" loading="lazy">
+                        <span class="blog-date">08 Jun 2026</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Comunidad</span>
+                        <h3>Taller gratuito: Uso responsable del cannabis medicinal</h3>
+                        <p>Próximo sábado 22 de junio realizaremos un taller abierto para la comunidad sobre uso responsable.</p>
+                        <a href="#" class="blog-read-more">Leer más →</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="assets/hero.jpg" alt="Investigación" loading="lazy">
+                        <span class="blog-date">01 Jun 2026</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Investigación</span>
+                        <h3>Nuevos estudios sobre CBD y ansiedad en Chile</h3>
+                        <p>Resultados preliminares de la investigación realizada en colaboración con universidades chilenas.</p>
+                        <a href="#" class="blog-read-more">Leer más →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Inscripción -->
     <section id="inscripcion" class="registration">
         <div class="container">
@@ -628,8 +677,27 @@
         <i class="fab fa-whatsapp" aria-hidden="true"></i>
     </a>
 
+    <!-- Panel Admin - Fichas de Ingreso -->
+    <div id="admin-panel" class="admin-panel hidden">
+        <div class="admin-header">
+            <h2>Panel de Administración — Fichas de Ingreso</h2>
+            <div class="admin-actions">
+                <button id="admin-export" class="btn-secondary"><i class="fas fa-download"></i> Exportar CSV</button>
+                <button id="admin-close" class="btn-secondary"><i class="fas fa-times"></i> Cerrar</button>
+            </div>
+        </div>
+        <div class="admin-stats" id="admin-stats"></div>
+        <div class="admin-list" id="admin-list"></div>
+    </div>
+
+    <!-- Botón admin oculto -->
+    <button id="admin-toggle" class="admin-toggle" title="Panel de administración">
+        <i class="fas fa-cog"></i>
+    </button>
+
     <script src="config.js"></script>
-    <script src="script.js?v=4"></script>
+    <script src="ficha.js"></script>
+    <script src="script.js?v=5"></script>
     <script src="anti-plagiarism.js"></script>
 </body>
 
