@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -51,6 +51,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Corporación INNOVACANN",
+        "description": "Corporación sin fines de lucro dedicada al acceso seguro y regulado al cannabis medicinal en Chile.",
+        "url": "https://innovacann.cl",
+        "telephone": "+56978900761",
+        "email": "corporacioninnovacann@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Valparaíso",
+            "addressCountry": "CL"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -33.0472,
+            "longitude": -71.6127
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "10:00",
+                "closes": "14:00"
+            }
+        ],
+        "sameAs": [
+            "https://www.instagram.com/innovacann"
+        ],
+        "priceRange": "$$"
+    }
+    </script>
 
     <!-- Navegación -->
     <nav class="navbar">
@@ -169,6 +210,39 @@
         </div>
     </section>
 
+    <!-- Beneficios -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Beneficios</span>
+                <h2>¿Por qué elegir Innovacann?</h2>
+                <p>Ofrecemos un servicio completo y profesional para tu bienestar.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                    <h3>Marco Legal</h3>
+                    <p>Operación regulada y transparente bajo la legislación chilena vigente.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-user-md" aria-hidden="true"></i></div>
+                    <h3>Respaldo Médico</h3>
+                    <p>Acceso solo con receta vigente. Equipo médico especializado.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+                    <h3>Educación</h3>
+                    <p>Talleres, cursos y acompañamiento continuo para pacientes.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+                    <h3>Comunidad</h3>
+                    <p>Red de socios y pacientes comprometidos con la salud.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Proceso -->
     <section class="how-it-works" id="proceso">
         <div class="container">
@@ -197,6 +271,70 @@
                     <div class="step-icon"><i class="fas fa-user-check" aria-hidden="true"></i></div>
                     <h3>Revisión y bienvenida</h3>
                     <p>Verificamos tu documentación en 24 a 48 horas hábiles y te damos la bienvenida a la comunidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Testimonios</span>
+                <h2>Lo que dicen nuestros socios</h2>
+                <p>Historias reales de personas que confían en Innovacann.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Excelente atención y profesionalismo. Mi calidad de vida ha mejorado significativamente desde que soy parte de Innovacann."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div class="testimonial-info">
+                            <strong>María Rodríguez</strong>
+                            <span>Paciente desde 2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"La comunidad Innovacann me ha dado apoyo y educación que no encontraba en otro lado. Son excelentes profesionales."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">CP</div>
+                        <div class="testimonial-info">
+                            <strong>Carlos Pérez</strong>
+                            <span>Socio desde 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Profesionales comprometidos. Me guiaron en todo el proceso de inscripción y tratamiento. Totalmente recomendado."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AL</div>
+                        <div class="testimonial-info">
+                            <strong>Ana López</strong>
+                            <span>Paciente desde 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Pacientes Activos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Años de Experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Productos Certificados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Horas de Respuesta</div>
                 </div>
             </div>
         </div>
@@ -491,7 +629,8 @@
     </a>
 
     <script src="config.js"></script>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
+    <script src="anti-plagiarism.js"></script>
 </body>
 
 </html>

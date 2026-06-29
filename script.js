@@ -114,7 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var animated = document.querySelectorAll(
             '.section-header, .about-content, .about-image, .step-card, ' +
-            '.wizard, .contact-card, .hero-content, .hero-visual'
+            '.wizard, .contact-card, .hero-content, .hero-visual, ' +
+            '.benefit-card, .testimonial-card, .stats-strip'
         );
         animated.forEach(function (el) {
             el.classList.add('pre-animate');
@@ -127,6 +128,86 @@ document.addEventListener('DOMContentLoaded', function () {
             animated.forEach(function (el) { el.classList.add('animate-in'); });
         }, 2500);
     }
+
+    // ── Stats Counter Animation ──────────────────────────────
+    var statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                var statNumbers = entry.target.querySelectorAll('.stat-number[data-target]');
+                statNumbers.forEach(function (el) {
+                    animateCounter(el);
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    var statsSection = document.querySelector('.stats-strip');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+
+    function animateCounter(element) {
+        var target = parseInt(element.getAttribute('data-target'));
+        var duration = 2000; // 2 seconds
+        var start = 0;
+        var startTime = null;
+
+        function updateCounter(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            
+            // Easing function for smooth animation
+            var easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            var current = Math.floor(easeOutQuart * target);
+            
+            element.textContent = current + (target >= 100 ? '+' : '+');
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = target + '+';
+                element.classList.add('counting');
+                setTimeout(function () {
+                    element.classList.remove('counting');
+                }, 300);
+            }
+        }
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    // ── Parallax effect for hero section ─────────────────────
+    var heroSection = document.querySelector('.hero');
+    if (heroSection && !reduceMotion) {
+        window.addEventListener('scroll', function () {
+            var scrolled = window.pageYOffset;
+            var heroVisual = document.querySelector('.hero-visual');
+            if (heroVisual && scrolled < 800) {
+                heroVisual.style.transform = 'translateY(' + (scrolled * 0.1) + 'px)';
+            }
+        }, { passive: true });
+    }
+
+    // ── Smooth reveal for sections ───────────────────────────
+    var sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                sectionObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(function (section) {
+        if (!reduceMotion) {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            sectionObserver.observe(section);
+        }
+    });
 
     // ════════════════════════════════════════════════════════
     //  ASISTENTE DE INSCRIPCIÓN
